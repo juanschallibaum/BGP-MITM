@@ -1,0 +1,42 @@
+!
+!
+service integrated-vtysh-config
+!
+interface erspan0
+!
+interface eth0
+ ip address 20.0.0.6/30
+!
+interface eth1
+ ip address 77.77.76.2/30
+!
+interface eth2
+ ip address 77.77.76.5/30
+!
+interface gre0
+!
+interface gretap0
+!
+interface lo
+!
+router bgp 777
+ bgp router-id 77.77.76.5
+ network 77.0.0.0/8
+ neighbor 20.0.0.5 remote-as 20
+ neighbor 77.77.76.1 remote-as 777
+ neighbor 77.77.76.1 next-hop-self
+!
+ address-family ipv6
+ exit-address-family
+ exit
+!
+router ospf
+ network 77.77.76.0/30 area 0.0.0.0
+ network 77.77.76.4/30 area 0.0.0.0
+!
+ip forwarding
+ipv6 forwarding
+!
+line vty
+!
+end

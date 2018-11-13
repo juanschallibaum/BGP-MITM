@@ -1,0 +1,42 @@
+!
+!
+service integrated-vtysh-config
+!
+interface erspan0
+!
+interface eth0
+ ip address 66.66.66.2/30
+!
+interface eth1
+ ip address 66.66.66.5/30
+!
+interface gre0
+!
+interface gretap0
+!
+interface lo
+!
+router bgp 666
+ bgp router-id 66.66.66.5
+ network 66.0.0.0/8
+ neighbor 66.66.66.1 remote-as 666
+ neighbor 66.66.66.1 route-reflector-client
+ neighbor 66.66.66.1 next-hop-self
+ neighbor 66.66.66.6 remote-as 666
+ neighbor 66.66.66.6 route-reflector-client
+ neighbor 66.66.66.6 next-hop-self
+!
+ address-family ipv6
+ exit-address-family
+ exit
+!
+router ospf
+ network 66.66.66.0/30 area 0.0.0.0
+ network 66.66.66.4/30 area 0.0.0.0
+!
+ip forwarding
+ipv6 forwarding
+!
+line vty
+!
+end
