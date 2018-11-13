@@ -1,0 +1,46 @@
+!
+!
+service integrated-vtysh-config
+!
+interface erspan0
+!
+interface eth0
+ ip address 40.0.0.1/30
+!
+interface eth1
+ ip address 40.0.0.9/30
+!
+interface eth2
+ ip address 40.0.0.5/30
+!
+interface eth3
+ ip address 40.0.0.13/30
+!
+interface gre0
+!
+interface gretap0
+!
+interface lo
+!
+router bgp 40
+ bgp router-id 40.0.1.1
+ network 40.0.0.0/8
+ neighbor 40.0.0.2 remote-as 20
+ neighbor 40.0.0.6 remote-as 40
+ neighbor 40.0.0.6 next-hop-self
+ neighbor 40.0.0.10 remote-as 777
+!
+ address-family ipv6
+ exit-address-family
+ exit
+!
+router ospf
+ network 40.0.0.4/30 area 0.0.0.0
+ network 40.0.0.12/30 area 0.0.0.0
+!
+ip forwarding
+ipv6 forwarding
+!
+line vty
+!
+end
