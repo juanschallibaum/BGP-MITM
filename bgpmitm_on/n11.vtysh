@@ -17,7 +17,7 @@ interface gretap0
 interface lo
 !
 router bgp 30
- bgp router-id 66.66.66.18
+ bgp router-id 30.0.0.5
  network 30.0.0.0/8
  neighbor 30.0.0.2 remote-as 20
  neighbor 30.0.0.6 remote-as 666
