@@ -1,0 +1,39 @@
+!
+!
+service integrated-vtysh-config
+!
+interface eth0
+ ip address 66.66.66.6/30
+!
+interface eth1
+ ip address 66.66.66.1/30
+!
+interface lo
+!
+router bgp 666
+ bgp router-id 66.66.66.6
+ network 66.0.0.0/8
+ network 77.0.0.0/8
+ neighbor 66.66.66.2 remote-as 30
+ neighbor 66.66.66.2 route-map MITM-ROUTEMAP out
+ neighbor 66.66.66.5 remote-as 10
+ neighbor 66.66.66.5 route-map MITM-ROUTEMAP out
+!
+ address-family ipv6
+ exit-address-family
+ exit
+!
+ip prefix-list MITM-OUT seq 5 permit 77.0.0.0/8
+!
+route-map MITM-ROUTEMAP permit 10
+ match ip address prefix-list MITM-OUT
+ set as-path prepend 30 777
+!
+route-map MITM-ROUTEMAP permit 20
+!
+ip forwarding
+ipv6 forwarding
+!
+line vty
+!
+end

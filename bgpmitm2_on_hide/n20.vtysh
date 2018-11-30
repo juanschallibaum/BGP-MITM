@@ -1,0 +1,23 @@
+!
+!
+service integrated-vtysh-config
+!
+interface eth0
+ ip address 66.66.66.6/30
+!
+interface eth1
+ ip address 66.66.66.1/30
+!
+interface lo
+!
+ip route 11.0.0.0/8 66.66.66.5
+ip route 20.0.0.0/8 66.66.66.2
+ip route 30.0.0.0/8 66.66.66.2
+ip route 77.0.0.0/8 66.66.66.2
+!
+ip forwarding
+ipv6 forwarding
+!
+line vty
+!
+end
